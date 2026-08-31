@@ -1,0 +1,388 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   [글로벌 변수 및 폰트 임포트] 
+========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+/* 상단 헤더 로그인 유저 환영 문구 스타일 */
+.user-greet {
+    font-size: 14px;
+    font-weight: bold;
+    color: #7d6b60;            /* 여기댕 시그니처 브라운 톤 */
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.user-greet strong {
+    color: #e65c47;            /* 아이디 부분만 다홍색 포인트 강조 */
+    font-weight: 900;
+}
+
+/* ==========================================================================
+   [기본 초기화] 팀원 디자인에 맞춘 폰트 및 배경색 변경
+========================================================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    font-family: 'NanumSquareRound', 'Pretendard', sans-serif; 
+    font-size: 15px; 
+    color: #444; 
+    background-color: #FFF8F3; 
+    letter-spacing: 0.5px;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* 제목이나 강조할 부분만 귀여운 'Jua' 손글씨 폰트 적용 */
+h1, h2, h3, h4, .logo, .badge {
+    font-family: 'Jua', sans-serif;
+}
+
+/* ==========================================================================
+   [Header 컴포넌트]
+========================================================================== */
+.main-header { 
+    position: fixed;               /* 화면 상단에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 스크롤 시 뒤의 글씨와 겹쳐도 가독성이 유지되도록 살구색 바탕에 약간의 투명도와 블러 효과를 부여 */
+    background-color: rgba(255, 248, 243, 0.96); 
+    backdrop-filter: blur(8px);
+    padding: 15px 0; 
+    z-index: 1000;                 /* 다른 요소들보다 무조건 위에 보이도록 설정 */
+    border-bottom: 1px solid rgba(255, 203, 164, 0.4);
+    box-shadow: 0 4px 12px rgba(255, 155, 123, 0.05);
+}
+.header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+
+.logo { font-size: 29px; font-weight: normal; color: #FF725E; } 
+
+/* ==========================================================================
+   [메인페이지 카테고리 Navigation 및 스페셜 탭] 
+========================================================================== */
+.main-nav { margin-top: 15px; }
+.nav-list { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 15px; padding: 0 20px; }
+
+/* 기본 카테고리 메뉴 글자 (병원/호텔/미용/놀이터) */
+.nav-list li a { 
+    display: block; 
+    padding: 10px 25px; 
+    background-color: #FFDBCB; 
+    border-radius: 30px;       
+    font-size: 16px;            
+    color: #555;
+    font-weight: bold;
+    transition: all 0.3s; 
+}
+.nav-list li a:hover { background-color: #FF9B7B; color: #fff; }
+
+/* 공지사항 / 건의사항 전용 아웃라인 하이라이트 디자인 */
+.nav-list li a.special-nav {
+    background-color: #FFF;
+    border: 2px solid #FF9B7B; 
+    color: #FF725E;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(255, 114, 94, 0.08);
+    padding: 8px 23px; 
+}
+.nav-list li a.special-nav:hover {
+    background-color: #FF9B7B;  
+    color: #FFF;
+    border-color: #FF9B7B;
+}
+
+/* ==========================================================================
+   [통합 검색 영역 (네비게이션 탭 하단 위치)]
+========================================================================== */
+.search-area-bottom {
+    max-width: 1200px;
+    margin: 20px auto 5px;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #FFCBA4;
+    border-radius: 30px;
+    padding: 4px 6px;
+    box-shadow: 0 4px 10px rgba(255, 155, 123, 0.06);
+}
+
+.search-input { 
+    border: none; 
+    padding: 10px 15px; 
+    width: 420px; 
+    outline: none; 
+    font-family: inherit;
+    font-size: 15px; 
+    background: transparent;
+}
+
+.search-btn { 
+    padding: 10px 25px; 
+    background-color: #FF9B7B; 
+    color: #fff; 
+    border: none; 
+    border-radius: 30px; 
+    cursor: pointer; 
+    font-family: inherit;
+    font-size: 15px; 
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.search-btn:hover { background-color: #FF725E; }
+
+/* ==========================================================================
+   [오른쪽 상단 유틸 메뉴] 
+========================================================================== */
+.util-menu { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: bold; }
+.login-link { color: #666; padding: 6px 12px; border-radius: 30px; transition: all 0.2s ease; }
+.login-link:hover { color: #FF725E; }
+.signup-link {
+    color: #FF9B7B;
+    padding: 6px 15px;
+    border: 1px solid #FF9B7B;
+    border-radius: 30px; 
+    transition: all 0.2s ease;
+}
+.signup-link:hover { background-color: #FF9B7B; color: #fff; }
+.util-divider { color: #FFCBA4; font-size: 13px; user-select: none; }
+
+/* ==========================================================================
+   [Main Content 영역 & 메인화면 게시글 리스트] 
+========================================================================== */
+.content-wrapper { 
+    max-width: 1200px; 
+    margin: 0 auto 40px; 
+    min-height: 500px; 
+    padding: 210px 20px 0; /* 고정 헤더 높이 보호 */
+}
+.welcome-banner { background-color: transparent; padding: 20px; text-align: center; margin-bottom: 20px; }
+
+.board-list li {
+    padding: 15px 5px;
+    border-bottom: 1px dashed #FFCBA4; 
+    display: flex;
+    align-items: center;
+}
+
+.badge {
+    border-radius: 20px;
+    background-color: #FFDBCB;
+    color: #FF725E;
+    padding: 4px 12px;
+    font-size: 14px; 
+    margin-right: 15px;
+}
+
+/* ==========================================================================
+   [정렬 필터바 및 페이징 레이아웃] 
+========================================================================== */
+.sort-buttons { display: flex; gap: 8px; }
+
+.sort-btn {
+    border: none;                 
+    background-color: #FFDBCB;    
+    padding: 8px 18px;            
+    font-size: 14px;              
+    color: #666;  
+    font-weight: bold;                
+    border-radius: 30px;          
+    cursor: pointer;              
+    transition: all 0.2s ease;    
+    font-family: inherit;
+}
+.sort-btn:hover { background-color: #FFCBA4; color: #444; }
+.sort-btn.active { background-color: #FF9B7B; color: #fff; }
+
+.pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 40px; }
+
+.page-link {
+    display: flex;                
+    justify-content: center;      
+    align-items: center;          
+    width: 36px;                  
+    height: 36px;                 
+    border: none;                 
+    background-color: #FFDBCB;    
+    color: #555;                  
+    font-size: 15px;              
+    font-weight: bold;
+    border-radius: 50%;           
+    cursor: pointer;              
+    transition: all 0.2s ease;    
+    font-family: inherit;
+}
+.page-link:hover { background-color: #FFCBA4; }
+.page-link.active { background-color: #FF9B7B; color: #fff; }
+.page-link.arrow { background-color: transparent; color: #FF9B7B; font-size: 19px; }
+
+/* ==========================================================================
+   [인기 게시글 슬라이더 (Carousel)]
+========================================================================== */
+.hot-carousel-section { margin-bottom: 40px; }
+.carousel-title {
+    font-size: 24px;
+    color: #FF725E;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
+
+.carousel-wrapper { position: relative; display: flex; align-items: center; }
+.carousel-track-container {
+    display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth; padding: 10px 5px;
+}
+.carousel-track-container::-webkit-scrollbar { display: none; }
+
+.carousel-card {
+    flex: 0 0 calc(25% - 15px); 
+    background-color: #fff;
+    border: 2px solid #FFCBA4;
+    border-radius: 20px; 
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(255, 155, 123, 0.08);
+    transition: transform 0.2s ease;
+}
+.carousel-card:hover { transform: translateY(-5px); border-color: #FF9B7B; }
+
+.carousel-image { width: 100%; height: 160px; object-fit: cover; border-bottom: 1px solid #FFCBA4; }
+.carousel-info { padding: 15px; }
+.carousel-info-title { font-size: 15px; font-weight: bold; color: #333; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.carousel-info-stats { font-size: 13px; color: #999; display: flex; justify-content: space-between; }
+
+.carousel-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px;
+    background-color: #FF9B7B; color: #fff; border: none; border-radius: 50%; 
+    font-size: 20px; font-weight: bold; cursor: pointer; z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.carousel-arrow:hover { background-color: #FF725E; }
+.left-arrow { left: -20px; } 
+.right-arrow { right: -20px; }
+
+/* ==========================================================================
+   [🚨 신규 추가: 게시판 전용 디자인 (QnA, 공지사항 등)]
+========================================================================== */
+/* 게시판 메인 하얀색 박스 */
+.container { 
+    max-width: 900px; 
+    margin: 220px auto 40px; /* 고정 헤더(190px)를 피하기 위한 상단 마진 */
+    background: #fff; 
+    padding: 35px 40px; 
+    border-radius: 22px; 
+    border: 3px solid #FFCBA4; /* 사용자의 패스텔 피치 테두리 그대로 적용 */
+    box-shadow: 0 8px 24px rgba(255, 155, 123, 0.08); 
+}
+
+/* 게시판 제목 */
+.container h2 { 
+    color: #FF725E; 
+    border-bottom: 2px dashed #FFDBCB; 
+    padding-bottom: 15px; 
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 32px;
+}
+
+/* 게시판 좌우 정렬 박스 */
+.filter-wrapper { 
+    width: 100%; 
+    display: flex;             
+    justify-content: space-between; 
+    align-items: center;       
+    margin-bottom: 15px;         
+}
+
+/* 게시판 테이블 디자인 */
+.container table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 15px; 
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.container th, .container td { 
+    padding: 14px 15px; 
+    border-bottom: 1px solid #FFDBCB; 
+    text-align: center; 
+}
+
+.container th { 
+    background-color: #FFF8F3; /* 전체 배경색과 동일한 톤으로 고급스럽게 */
+    color: #7d6b60; 
+    font-weight: bold; 
+}
+
+.container tr:hover { 
+    background-color: #fffaf7; 
+}
+
+/* 게시판 내의 글씨 및 링크 포인트 색상 */
+.container a {
+    transition: all 0.2s ease;
+}
+.container a:hover {
+    color: #FF725E !important;
+    font-weight: bold;
+}
+
+/* 게시판 하단 버튼 박스 및 버튼 스타일 (캡슐 그라데이션) */
+.btn-box { text-align: right; margin-top: 20px; }
+
+.btn { 
+    background: linear-gradient(135deg, #FF9B7B, #FF725E);
+    color: white !important; 
+    padding: 10px 22px; 
+    border: none; 
+    border-radius: 50px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(255, 114, 94, 0.2);
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+.btn:hover { 
+    background: linear-gradient(135deg, #FF725E, #e65c47);
+    transform: translateY(-2px);
+    color: white;
+}
+
+
+
+    /* =========================================================
+       🐾 로그인 폼 전용 중앙 로고 스타일
+    ========================================================= */
+    .top-logo {
+        /* position: absolute 등 고정 속성 제거 */
+        width: 380px;            /* 🔥 폼(로그인 박스)의 너비와 동일하게 맞춤 */
+        text-align: center;      /* 🔥 중앙 정렬 */
+        margin-bottom: 25px;     /* 🔥 로그인 창과의 간격 */
+    }
+    
+    .top-logo a {
+        font-family: 'Jua', sans-serif; 
+        font-size: 46px;         /* 🔥 크기를 시원하게 키움 (기존 29px -> 46px) */
+        font-weight: normal;            
+        color: #FF725E;                 
+        text-decoration: none;
+        text-shadow: 2px 2px 5px rgba(230, 92, 71, 0.15); /* 약간의 그림자로 입체감 추가 */
+        transition: transform 0.2s ease, color 0.2s ease;
+        display: inline-block;
+    }
+
+
+/* Footer 컴포넌트 */
+.main-footer { background-color: #444; color: #fff; padding: 40px 20px; text-align: center; margin-top: auto; }
+
+
+

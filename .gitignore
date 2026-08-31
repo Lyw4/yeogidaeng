@@ -1,0 +1,51 @@
+# ===== 빌드 산출물 =====
+build/
+bin/
+target/
+out/
+*.class
+*.war
+*.ear
+
+# ===== Eclipse / IDE =====
+.settings/
+.classpath
+.project
+.metadata
+.apt_generated/
+.factorypath
+*.launch
+
+# ===== IntelliJ / VS Code =====
+.idea/
+*.iml
+.vscode/
+
+# ===== 외부 라이브러리 (라이선스 및 용량 문제로 제외) =====
+# ojdbc17.jar (7.5MB) : Oracle JDBC 드라이버는 재배포 라이선스 제한이 있음
+# cos.jar          : 파일 업로드 라이브러리
+# -> README 에 다운로드 방법을 안내하고 저장소에는 올리지 않음
+src/main/webapp/WEB-INF/lib/*.jar
+
+# ===== 사용자 업로드 파일 =====
+# 서비스 실행 중 사용자가 올린 이미지는 소스가 아니므로 제외
+src/main/webapp/views/upload/*
+!src/main/webapp/views/upload/.gitkeep
+
+# ===== 개발 중 만든 백업 압축 파일 =====
+*.zip
+*.rar
+*.7z
+*.bak
+
+# ===== DB 접속 정보 등 민감 설정 =====
+# 접속 정보를 외부 파일로 분리할 경우 아래 파일은 절대 커밋하지 않음
+db.properties
+application-local.properties
+*.env
+
+# ===== OS / 기타 =====
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.log

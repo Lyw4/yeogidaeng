@@ -1,0 +1,24 @@
+# ==========================================================
+# DB 접속 설정 템플릿
+# ==========================================================
+# 사용 방법
+#   1. 이 파일을 같은 위치에 db.properties 라는 이름으로 복사한다.
+#   2. 아래 값을 본인 환경에 맞게 채운다.
+#   3. db.properties 는 .gitignore 에 등록되어 있어 저장소에 올라가지 않는다.
+#      (이 example 파일만 저장소에 포함된다)
+#
+# 주의 : 실제 계정/비밀번호를 이 example 파일에 적지 않는다.
+# ==========================================================
+
+# JDBC 드라이버 클래스
+# ojdbc17 사용 시 oracle.jdbc.OracleDriver 도 사용 가능 (구버전 표기는 oracle.jdbc.driver.OracleDriver)
+db.driver=oracle.jdbc.driver.OracleDriver
+
+# 접속 주소 : jdbc:oracle:thin:@[호스트]:[포트]:[SID]
+# 예) 로컬 설치        -> jdbc:oracle:thin:@localhost:1521:orcl
+# 예) 팀 공용 서버     -> jdbc:oracle:thin:@192.168.0.10:1521:orcl
+db.url=jdbc:oracle:thin:@localhost:1521:orcl
+
+# 계정 정보
+db.user=your_account
+db.password=your_password
