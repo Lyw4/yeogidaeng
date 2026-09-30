@@ -22,7 +22,10 @@
     int totalPages = 1;
 
     try {
-        postList = dao.getPostList(currentPage, boardType, category, sort, searchType, searchKeyword);
+        // getPostList 의 첫 번째 인자는 페이지 번호가 아니라 '몇 번째 글부터' 가져올지(startRow)다.
+        // 페이지 번호를 그대로 넘기면 2페이지가 11번째가 아닌 2번째 글부터 나온다. (list.jsp 와 같은 계산)
+        int startRow = (currentPage - 1) * 10 + 1;
+        postList = dao.getPostList(startRow, boardType, category, sort, searchType, searchKeyword);
         totalCount = dao.getTotalPostCount(boardType, category, searchType, searchKeyword);
         totalPages = (int) Math.ceil((double) totalCount / 10);
         if (totalPages == 0) totalPages = 1;
