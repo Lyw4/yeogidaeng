@@ -73,6 +73,6 @@
     <jsp:include page="../components/footer.jsp" />
 
     <%-- 자바스크립트 메인기능 호출 --%>
-	<script src="../js/main.js?v=4"></script>
+	<script src="../js/main.js?v=20261014"></script>
 </body>
 </html>

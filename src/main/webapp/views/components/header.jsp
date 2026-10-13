@@ -1,4 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%!
+    // 세션 값을 script 안에 넣을 때 따옴표나 닫는 script 태그가 코드가 되지 않게 한다.
+    private String headerJsString(String value) {
+        if (value == null) value = "";
+        StringBuilder escaped = new StringBuilder("\"");
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            if (c == '"' || c == '\\') {
+                escaped.append('\\').append(c);
+            } else if (c < 0x20 || c == '<' || c == '>' || c == '&' || c == '\u2028' || c == '\u2029') {
+                escaped.append(String.format("\\u%04x", (int) c));
+            } else {
+                escaped.append(c);
+            }
+        }
+        return escaped.append('"').toString();
+    }
+%>
 <header class="main-header">
     <div class="header-container">
         <a href="<%= request.getContextPath() %>/views/main/mainPage.jsp" class="logo">🐾여기댕🐾</a>
@@ -51,11 +69,11 @@
     const isUserLoggedIn = <%= isLogin %>;
     
     // 2. 로그인된 사용자 아이디
-    const loggedInUserId = '<%= sessionId != null ? sessionId : "" %>';
+    const loggedInUserId = <%= headerJsString(sessionId) %>;
     
     // 3. 자바스크립트 변수로 로그인한 유저의 권한을 바인딩
-    const loggedInUserRole = '<%= userRole %>';
+    const loggedInUserRole = <%= headerJsString(userRole) %>;
     
     // 자바스크립트 파일(main.js)에서도 이 절대 경로 주소를 쓸 수 있도록 공유합니다.
-    const contextPath = '<%= request.getContextPath() %>';
+    const contextPath = <%= headerJsString(request.getContextPath()) %>;
 </script>
